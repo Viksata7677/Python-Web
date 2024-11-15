@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <!-- Edit Post Form -->
+        <section id="edit">
+          <div class="form">
+            <h2>Edit Post</h2>
+
+            <form class="edit-form" method="post" action="{% url 'edit_post' post.id %}">
+                {% csrf_token %}
+                
+              <div>
+                <label for="id_title">Title:</label>
+                  {{ form.title }}
+                  {% if form.title.errors %}
+                    {% for error in form.title.errors %}
+                         <p>{{ error }}</p>
+                    {% endfor %}
+                  {% endif %}
+              
+              </div>
+
+              <div>
+                <label for="id_image_url">Post Image URL:</label>
+                  {{ form.image_url }}
+                    {% if form.image_url.errors %}
+                     {% for error in form.image_url.errors %}
+                        <p>{{ error }}</p>
+                     {% endfor %}
+                    {% endif %}
+              
+              </div>
+
+              <div>
+                <label for="id_content">Content:</label>
+                  {{ form.content }}
+                    {% if form.content.errors %}
+                        {% for error in form.content.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endif %} 
+              
+              </div>
+
+              <!-- form button -->
+              <button type="submit">Edit</button>
+            </form>
+          </div>
+        </section>
+{% endblock %}

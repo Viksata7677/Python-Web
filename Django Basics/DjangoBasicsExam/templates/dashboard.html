@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="dashboard">
+    {% if posts %}
+        <!-- Display a heading if there are posts -->
+        <h2>Published Posts</h2>
+        <div class="posts">
+            {% for post in posts %}
+                <div class="post-card">
+                    <!-- Post image -->
+                    <img src="{{ post.image_url }}" alt="{{ post.title }} image" />
+
+                    <!-- Post title -->
+                    <h3 class="title">{{ post.title }}</h3>
+
+                    <!-- Post content preview: first three words -->
+                    <p class="description">
+                        {% with post.content.split|slice:":3" as content_preview %}
+                            {{ content_preview|join:" " }}
+                            {% if post.content|length > content_preview|join:" "|length %}...{% endif %}
+                        {% endwith %}
+                    </p>
+
+                    <!-- Post details button linking to Post Details page -->
+                    <a class="details-btn" href="{% url 'post_details' post.id %}">See More</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <!-- Display this heading only if there are NO posts -->
+        <h2>No published posts yet.</h2>
+    {% endif %}
+</section>
+{% endblock %}
