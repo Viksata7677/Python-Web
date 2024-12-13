@@ -26,7 +26,7 @@
                             <p><span>About me: </span>{{ traveler.about_me }}
                             </p>
                             {% endif %}
-                        {% if traveler.trip_set %}
+                        {% if traveler.trip_set.exists %}
                             <!-- if there are trips - list data; skip if no trips -->
                             <p><span>Shared Trips: {{ traveler.trip_set.count }}</span></p>
                         {% endif %}
@@ -37,6 +37,7 @@
                                 <!-- trip 1-->
                                 <li>{{ trip.destination }}: {{ trip.duration }} day/s, started on: {{ trip.start_date }}</li>
 
+                                    
                                 {% endfor %}
 
                             </ul>
