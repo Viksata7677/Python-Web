@@ -17,3 +17,7 @@ class TravelerBaseForm(forms.ModelForm):
             'email': 'Email:',
             'country': 'Country:'
         }
+
+
+class TravelerCreateForm(TravelerBaseForm):
+    pass
