@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from DjangoBasicsRetakeExam.utils import get_user_obj
 from trips.forms import TripCreateForm
@@ -18,3 +18,9 @@ class TripCreateView(CreateView):
     def form_valid(self, form):
         form.instance.traveler = get_user_obj()
         return super().form_valid(form)
+
+
+class TripDetailView(DetailView):
+    model = Trip
+    template_name = 'details-trip.html'
+    pk_url_kwarg = 'trip_pk'
