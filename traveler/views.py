@@ -1,6 +1,6 @@
 
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from DjangoBasicsRetakeExam.utils import get_user_obj
 from traveler.forms import TravelerCreateForm, TravelerEditForm
@@ -30,6 +30,14 @@ class TravelerEditView(UpdateView):
     template_name = 'edit-traveler.html'
     form_class = TravelerEditForm
     success_url = reverse_lazy('details-traveler')
+
+    def get_object(self, queryset=None):
+        return get_user_obj()
+
+
+class TravelerDeleteView(DeleteView):
+    template_name = 'delete-traveler.html'
+    success_url = reverse_lazy('index')
 
     def get_object(self, queryset=None):
         return get_user_obj()
