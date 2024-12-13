@@ -24,3 +24,7 @@ class TripBaseForm(forms.ModelForm):
 
 class TripCreateForm(TripBaseForm):
     pass
+
+
+class TripEditForm(TripBaseForm):
+    pass
