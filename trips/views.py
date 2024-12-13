@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from DjangoBasicsRetakeExam.utils import get_user_obj
-from trips.forms import TripCreateForm, TripEditForm
+from trips.forms import TripCreateForm, TripEditForm, TripDeleteForm
 from trips.models import Trip
 
 
@@ -32,3 +32,17 @@ class TripEditView(UpdateView):
     form_class = TripEditForm
     pk_url_kwarg = 'trip_pk'
     success_url = reverse_lazy('all-trips')
+
+
+class TripDeleteView(DeleteView):
+    model = Trip
+    template_name = 'delete-trip.html'
+    form_class = TripDeleteForm
+    pk_url_kwarg = 'trip_pk'
+    success_url = reverse_lazy('all-trips')
+
+    def get_initial(self):
+        return self.object.__dict__
+
+    def form_invalid(self, form):
+        return super().form_valid(form)
