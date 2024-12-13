@@ -22,3 +22,7 @@ class TravelerBaseForm(forms.ModelForm):
 class TravelerCreateForm(TravelerBaseForm):
     pass
 
+
+class TravelerEditForm(TravelerBaseForm):
+    class Meta(TravelerBaseForm.Meta):
+        fields = TravelerBaseForm.Meta.fields + ('about_me',)
