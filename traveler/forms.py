@@ -21,3 +21,4 @@ class TravelerBaseForm(forms.ModelForm):
 
 class TravelerCreateForm(TravelerBaseForm):
     pass
+
